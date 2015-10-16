@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     
@@ -18,11 +19,45 @@ class ViewController: UIViewController {
     var seconds = 0
     var timer = NSTimer()
     
+    var buttonBeep: AVAudioPlayer?
+    var secondBeep: AVAudioPlayer?
+    var backgroudMusic: AVAudioPlayer?
+    
+//    MARK: Audio
+    func setupAudioPlayerWithFile(file: NSString, type: NSString) -> AVAudioPlayer? {
+        let path = NSBundle.mainBundle().pathForResource(file as String, ofType: type as String)
+        let url = NSURL.fileURLWithPath(path!)
+        
+        var audioPlayer: AVAudioPlayer?
+        
+        do {
+            try audioPlayer = AVAudioPlayer(contentsOfURL: url)
+        } catch {
+            print("Audio not available.")
+        }
+        
+        return audioPlayer
+    }
+    
 //    MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_tile")!)
+        timeLabel.backgroundColor = UIColor(patternImage: UIImage(named: "field_time")!)
+        scoreLabel.backgroundColor = UIColor(patternImage: UIImage(named: "field_score")!)
+        
+        if let buttonBeep = self.setupAudioPlayerWithFile("ButtonTap", type: "wav") {
+            self.buttonBeep = buttonBeep
+        }
+        if let secondBeep = self.setupAudioPlayerWithFile("SecondBeep", type: "wav") {
+            self.secondBeep = secondBeep
+        }
+        if let backgroudMusic = self.setupAudioPlayerWithFile("HallOfTheMountainKing", type: "mp3") {
+            self.backgroudMusic = backgroudMusic
+        }
+
         setupGame()
     }
 
@@ -33,6 +68,9 @@ class ViewController: UIViewController {
     
 //    MARK: Game
     func setupGame() {
+        backgroudMusic?.volume = 0.3
+        backgroudMusic?.play()
+        
         seconds = 30
         count = 0
         
@@ -43,6 +81,8 @@ class ViewController: UIViewController {
     }
     
     func subtrackTime() {
+        secondBeep?.play()
+        
         seconds--
         timeLabel.text = "Time: \(seconds)"
         
@@ -60,6 +100,8 @@ class ViewController: UIViewController {
 
 //    MARK: Action
     @IBAction func buttonPressed(sender: UIButton) {
+        buttonBeep?.play()
+        
         count++
         
         scoreLabel.text = "Score \n\(count)"

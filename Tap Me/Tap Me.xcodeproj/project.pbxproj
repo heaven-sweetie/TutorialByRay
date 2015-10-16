@@ -14,6 +14,9 @@
 		578E075E1BCF2D7F00EA2261 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 578E075C1BCF2D7F00EA2261 /* LaunchScreen.storyboard */; };
 		578E07691BCF2D7F00EA2261 /* Tap_MeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578E07681BCF2D7F00EA2261 /* Tap_MeTests.swift */; };
 		578E07741BCF2D7F00EA2261 /* Tap_MeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578E07731BCF2D7F00EA2261 /* Tap_MeUITests.swift */; };
+		578E07841BD07E7200EA2261 /* HallOfTheMountainKing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 578E07821BD07E7200EA2261 /* HallOfTheMountainKing.mp3 */; settings = {ASSET_TAGS = (); }; };
+		578E07851BD07E7200EA2261 /* SecondBeep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 578E07831BD07E7200EA2261 /* SecondBeep.wav */; settings = {ASSET_TAGS = (); }; };
+		578E07871BD082A500EA2261 /* ButtonTap.wav in Resources */ = {isa = PBXBuildFile; fileRef = 578E07861BD082A500EA2261 /* ButtonTap.wav */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		578E076F1BCF2D7F00EA2261 /* Tap MeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tap MeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		578E07731BCF2D7F00EA2261 /* Tap_MeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tap_MeUITests.swift; sourceTree = "<group>"; };
 		578E07751BCF2D7F00EA2261 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		578E07821BD07E7200EA2261 /* HallOfTheMountainKing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HallOfTheMountainKing.mp3; sourceTree = "<group>"; };
+		578E07831BD07E7200EA2261 /* SecondBeep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SecondBeep.wav; sourceTree = "<group>"; };
+		578E07861BD082A500EA2261 /* ButtonTap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ButtonTap.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				578E07521BCF2D7F00EA2261 /* Tap Me */,
+				578E07811BD07E7200EA2261 /* Resource */,
 				578E07671BCF2D7F00EA2261 /* Tap MeTests */,
 				578E07721BCF2D7F00EA2261 /* Tap MeUITests */,
 				578E07511BCF2D7F00EA2261 /* Products */,
@@ -123,6 +130,16 @@
 				578E07751BCF2D7F00EA2261 /* Info.plist */,
 			);
 			path = "Tap MeUITests";
+			sourceTree = "<group>";
+		};
+		578E07811BD07E7200EA2261 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				578E07861BD082A500EA2261 /* ButtonTap.wav */,
+				578E07821BD07E7200EA2261 /* HallOfTheMountainKing.mp3 */,
+				578E07831BD07E7200EA2261 /* SecondBeep.wav */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,8 +245,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				578E07871BD082A500EA2261 /* ButtonTap.wav in Resources */,
 				578E075E1BCF2D7F00EA2261 /* LaunchScreen.storyboard in Resources */,
+				578E07851BD07E7200EA2261 /* SecondBeep.wav in Resources */,
 				578E075B1BCF2D7F00EA2261 /* Assets.xcassets in Resources */,
+				578E07841BD07E7200EA2261 /* HallOfTheMountainKing.mp3 in Resources */,
 				578E07591BCF2D7F00EA2261 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
