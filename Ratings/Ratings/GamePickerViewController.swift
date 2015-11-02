@@ -1,17 +1,34 @@
 //
-//  PlayersViewController.swift
+//  GamePickerViewController.swift
 //  Ratings
 //
-//  Created by heaven on 10/19/15.
+//  Created by heaven on 10/28/15.
 //  Copyright © 2015 heaven. All rights reserved.
 //
 
 import UIKit
 
-class PlayersViewController: UITableViewController {
+class GamePickerViewController: UITableViewController {
     
-    var players:[Player] = playersData
-
+//    MARK: Properties
+    var games:[String] = [
+        "Angry Birds",
+        "Chess",
+        "Russian Roulette",
+        "Spin the Bottle",
+        "Texas Hold'em Poker",
+        "Tic-Tac-Toe"]
+    
+    var selectedGame:String? {
+        didSet {
+            if let game = selectedGame {
+                selectedGameIndex = games.indexOf(game)!
+            }
+        }
+    }
+    var selectedGameIndex:Int?
+    
+//    MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,13 +51,34 @@ class PlayersViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return players.count
+        return games.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("PlayerCell", forIndexPath: indexPath) as! PlayerCell
-        cell.player = players[indexPath.row] as Player
+        let cell = tableView.dequeueReusableCellWithIdentifier("GameCell", forIndexPath: indexPath)
+        cell.textLabel?.text = games[indexPath.row]
+        
+        if indexPath.row == selectedGameIndex {
+            cell.accessoryType = .Checkmark
+        } else {
+            cell.accessoryType = .None
+        }
+        
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if let index = selectedGameIndex {
+            let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0))
+            cell?.accessoryType = .None
+        }
+        
+        selectedGame = games[indexPath.row]
+        
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        cell?.accessoryType = .Checkmark
     }
 
     /*
@@ -79,26 +117,16 @@ class PlayersViewController: UITableViewController {
     */
 
     // MARK: - Navigation
-    /*
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    @IBAction func cancelToPlayersViewController(segue: UIStoryboardSegue) {
-        
-    }
-    
-    @IBAction func savePlayerDetail(segue: UIStoryboardSegue) {
-        if let playerViewController = segue.sourceViewController as? PlayerDetailsViewController {
-            if let player = playerViewController.player {
-                players.append(player)
-                
-                let indexPath = NSIndexPath(forRow: players.count - 1, inSection: 0)
-                tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        if segue.identifier == "SaveSelectedGame" {
+            if let cell = sender as? UITableViewCell {
+                let indexPath = tableView.indexPathForCell(cell)
+                if let index = indexPath?.row {
+                    selectedGame = games[index]
+                }
             }
         }
     }
+
 }
